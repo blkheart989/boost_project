@@ -27,50 +27,50 @@ Route::post('admin/login', [App\Http\Controllers\Admin\LoginController::class, '
 Route::get('admin/logout', [App\Http\Controllers\Admin\LoginController::class, 'logout'])->name('admin.logout');
 
 // ========== PUBLIC PAYMENT VERIFICATION ROUTE (NO MIDDLEWARE) ==========
-Route::post('admin/payment_verification/store', [App\Http\Controllers\admin\payment_verification_controller::class, 'store'])->name('payment_verification.store');
+Route::post('admin/payment_verification/store', [App\Http\Controllers\Admin\payment_verification_controller::class, 'store'])->name('payment_verification.store');
 
 // ========== PROTECTED ADMIN ROUTES (Require Login) ==========
 Route::middleware(['admin.auth'])->group(function () {
     
     // Admin Dashboard
-    Route::get('admins', [App\Http\Controllers\admin\indexcontroller::class, 'index_page'])->name('admin.dashboard');
-    Route::get('admin/dashboard/refresh', [App\Http\Controllers\admin\indexcontroller::class, 'refresh'])->name('admin.dashboard.refresh');
+    Route::get('admins', [App\Http\Controllers\Admin\indexcontroller::class, 'index_page'])->name('admin.dashboard');
+    Route::get('admin/dashboard/refresh', [App\Http\Controllers\Admin\indexcontroller::class, 'refresh'])->name('admin.dashboard.refresh');
     
     // Admin Testimonials
-    Route::get('admin/testimonial', [App\Http\Controllers\admin\testimonialcontroller::class, 'testimonial_page'])->name('admin.testimonial');
-    Route::post('admin/testimonial/add', [App\Http\Controllers\admin\testimonialcontroller::class, 'testimonial_add'])->name('admin.testimonial.add');
-    Route::get('admin/testimonials/show', [App\Http\Controllers\admin\testimonialcontroller::class, 'show_testimonial'])->name('admin.testimonials.show');
-    Route::post('admin/testimonials/delete/{id}', [App\Http\Controllers\admin\testimonialcontroller::class, 'delete_testimonial'])->name('admin.testimonials.delete');
-    Route::get('admin/testimonial/edit/{id}', [App\Http\Controllers\admin\testimonialcontroller::class, 'edit_testimonial'])->name('admin.testimonial.edit');
-    Route::post('testimonial_update', [App\Http\Controllers\admin\testimonialcontroller::class, 'update_testimonial'])->name('admin.testimonial.update');
+    Route::get('admin/testimonial', [App\Http\Controllers\Admin\testimonialcontroller::class, 'testimonial_page'])->name('admin.testimonial');
+    Route::post('admin/testimonial/add', [App\Http\Controllers\Admin\testimonialcontroller::class, 'testimonial_add'])->name('admin.testimonial.add');
+    Route::get('admin/testimonials/show', [App\Http\Controllers\Admin\testimonialcontroller::class, 'show_testimonial'])->name('admin.testimonials.show');
+    Route::post('admin/testimonials/delete/{id}', [App\Http\Controllers\Admin\testimonialcontroller::class, 'delete_testimonial'])->name('admin.testimonials.delete');
+    Route::get('admin/testimonial/edit/{id}', [App\Http\Controllers\Admin\testimonialcontroller::class, 'edit_testimonial'])->name('admin.testimonial.edit');
+    Route::post('testimonial_update', [App\Http\Controllers\Admin\testimonialcontroller::class, 'update_testimonial'])->name('admin.testimonial.update');
     
     // Admin Payment Verification (View/Edit/Delete only - Store is public)
-    Route::get('admin/payment_verification', [App\Http\Controllers\admin\payment_verification_controller::class, 'payment_verification_page'])->name('admin.payment_verification');
-    Route::get('admin/payment_verification/show_payment', [App\Http\Controllers\admin\payment_verification_controller::class, 'show_payment_verification'])->name('admin.payment_verification.show');
-    Route::post('admin/payment_verification/delete/{id}', [App\Http\Controllers\admin\payment_verification_controller::class, 'delete_payment_verification'])->name('admin.payment_verification.delete');
-    Route::get('admin/payment_verification/edit/{id}', [App\Http\Controllers\admin\payment_verification_controller::class, 'edit_payment_verification'])->name('admin.payment_verification.edit');
-    Route::post('admin/payment/approve/{id}', [App\Http\Controllers\admin\payment_verification_controller::class, 'approve_payment'])->name('admin.payment.approve');
-    Route::post('admin/payment/reject/{id}', [App\Http\Controllers\admin\payment_verification_controller::class, 'reject_payment'])->name('admin.payment.reject');
+    Route::get('admin/payment_verification', [App\Http\Controllers\Admin\payment_verification_controller::class, 'payment_verification_page'])->name('admin.payment_verification');
+    Route::get('admin/payment_verification/show_payment', [App\Http\Controllers\Admin\payment_verification_controller::class, 'show_payment_verification'])->name('admin.payment_verification.show');
+    Route::post('admin/payment_verification/delete/{id}', [App\Http\Controllers\Admin\payment_verification_controller::class, 'delete_payment_verification'])->name('admin.payment_verification.delete');
+    Route::get('admin/payment_verification/edit/{id}', [App\Http\Controllers\Admin\payment_verification_controller::class, 'edit_payment_verification'])->name('admin.payment_verification.edit');
+    Route::post('admin/payment/approve/{id}', [App\Http\Controllers\Admin\payment_verification_controller::class, 'approve_payment'])->name('admin.payment.approve');
+    Route::post('admin/payment/reject/{id}', [App\Http\Controllers\Admin\payment_verification_controller::class, 'reject_payment'])->name('admin.payment.reject');
     
     // Admin Withdrawals
-    Route::get('admin/withdrawals', [App\Http\Controllers\admin\payment_verification_controller::class, 'withdrawalsPage'])->name('admin.withdrawals');
-    Route::get('admin/withdraw/approve/{id}', [App\Http\Controllers\admin\payment_verification_controller::class, 'approveWithdrawal'])->name('admin.withdraw.approve');
-    Route::post('admin/withdraw/reject/{id}', [App\Http\Controllers\admin\payment_verification_controller::class, 'rejectWithdrawal'])->name('admin.withdraw.reject');
+    Route::get('admin/withdrawals', [App\Http\Controllers\Admin\payment_verification_controller::class, 'withdrawalsPage'])->name('admin.withdrawals');
+    Route::get('admin/withdraw/approve/{id}', [App\Http\Controllers\Admin\payment_verification_controller::class, 'approveWithdrawal'])->name('admin.withdraw.approve');
+    Route::post('admin/withdraw/reject/{id}', [App\Http\Controllers\Admin\payment_verification_controller::class, 'rejectWithdrawal'])->name('admin.withdraw.reject');
     
     // Admin Blogs
-    Route::get('admin/blog', [App\Http\Controllers\admin\blogcontroller::class, 'blog_page'])->name('admin.blog');
-    Route::post('admin/blogs/add_blogs', [App\Http\Controllers\admin\blogcontroller::class, 'blog_add'])->name('admin.blog.add');
-    Route::get('admin/blogs/show_blogs', [App\Http\Controllers\admin\blogcontroller::class, 'show_blogs'])->name('admin.blog.show');
-    Route::get('admin/blogs/delete{id}', [App\Http\Controllers\admin\blogcontroller::class, 'blog_delete'])->name('admin.blog.delete');
-    Route::get('admin/blogs/edit/{id}', [App\Http\Controllers\admin\blogcontroller::class, 'blog_edit'])->name('admin.blog.edit');
-    Route::post('admin/blogs/update/{id}', [App\Http\Controllers\admin\blogcontroller::class, 'blog_update'])->name('admin.blog.update');
+    Route::get('admin/blog', [App\Http\Controllers\Admin\blogcontroller::class, 'blog_page'])->name('admin.blog');
+    Route::post('admin/blogs/add_blogs', [App\Http\Controllers\Admin\blogcontroller::class, 'blog_add'])->name('admin.blog.add');
+    Route::get('admin/blogs/show_blogs', [App\Http\Controllers\Admin\blogcontroller::class, 'show_blogs'])->name('admin.blog.show');
+    Route::get('admin/blogs/delete{id}', [App\Http\Controllers\Admin\blogcontroller::class, 'blog_delete'])->name('admin.blog.delete');
+    Route::get('admin/blogs/edit/{id}', [App\Http\Controllers\Admin\blogcontroller::class, 'blog_edit'])->name('admin.blog.edit');
+    Route::post('admin/blogs/update/{id}', [App\Http\Controllers\Admin\blogcontroller::class, 'blog_update'])->name('admin.blog.update');
     
     // Admin Video
     Route::get('admin/video', [App\Http\Controllers\videocontroller::class, 'video'])->name('admin.video');
     Route::post('admin/video/store', [App\Http\Controllers\videocontroller::class, 'store'])->name('admin.video.store');
     
     // Admin Testing
-    Route::get('admin/test-daily-credit', [App\Http\Controllers\admin\payment_verification_controller::class, 'testDailyCredit'])->name('admin.test-daily-credit');
+    Route::get('admin/test-daily-credit', [App\Http\Controllers\Admin\payment_verification_controller::class, 'testDailyCredit'])->name('admin.test-daily-credit');
 });
 
 // ========== USER DASHBOARD ==========
