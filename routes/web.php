@@ -12,6 +12,10 @@ Route::get('testimonials', [App\Http\Controllers\Front\IndexController::class, '
 Route::get('/privacy-policy', [App\Http\Controllers\Front\IndexController::class, 'privacy_policy_page']);
 Route::get('/refund-policy', [App\Http\Controllers\Front\IndexController::class, 'refund_policy_page']);
 Route::get('/terms-of-service', [App\Http\Controllers\Front\IndexController::class, 'terms_of_service']);
+Route::get('/disclaimer', [App\Http\Controllers\Front\IndexController::class, 'disclaimer_page']);
+
+
+
 
 
 // ========== USER AUTHENTICATION ROUTES ==========
