@@ -98,6 +98,12 @@ public function terms_of_service(){
 
 return view('front.terms-of-service');
 }
+public function disclaimer_page(){
+
+
+return view('front.disclaimer');
+
+}
 
 
 
